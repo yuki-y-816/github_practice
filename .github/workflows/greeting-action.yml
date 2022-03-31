@@ -1,0 +1,12 @@
+name: greeting-action
+on:
+  push:
+    branches: develop
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: run a greeting script
+        run: echo Hello, world!
