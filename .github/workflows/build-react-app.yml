@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   build-react-app:
+    runs-on: ubuntu-latest
     steps:
       -
         uses: actions/checkout@v2
@@ -11,7 +12,6 @@ jobs:
         name: Set up Docker Container
         shell: bash
         run: |
-          docker compose run -rm react yarn build
           docker compose build
+          docker compose run --rm react yarn install
           docker compose up -d
-          docker compose exec react bash ls
