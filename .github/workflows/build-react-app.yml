@@ -15,3 +15,11 @@ jobs:
           docker compose build
           docker compose run --rm react yarn install
           docker compose up -d
+      -
+        name: Build React App
+        shell: bash
+        run: |
+          docker compose exec react yarn build
+          docker compose exec react ls
+          echo --------------
+          ls react/test-app
