@@ -4,13 +4,14 @@ on: [push]
 
 jobs:
   build-react-app:
-    -
-      uses: actions/checkout@v2
-    -
-      name: Set up Docker Container
-      shell: bash
-      run: |
-        docker compose run -rm react yarn build
-        docker compose build
-        docker compose up -d
-        docker compose exec react bash ls
+    steps:
+      -
+        uses: actions/checkout@v2
+      -
+        name: Set up Docker Container
+        shell: bash
+        run: |
+          docker compose run -rm react yarn build
+          docker compose build
+          docker compose up -d
+          docker compose exec react bash ls
