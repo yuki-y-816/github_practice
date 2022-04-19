@@ -1,6 +1,11 @@
 name: Build & Push React App
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
 
 permissions:
   id-token: write
@@ -8,6 +13,7 @@ permissions:
 
 jobs:
   build-react-app:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       -
@@ -43,4 +49,4 @@ jobs:
         with:
           file: ./containers/react/Dockerfile
           push: true
-          tags: ${{ secrets.ECR_REGISTRY }}/react-cd-test:${{ github.sha }}
+          tags: ${{ secrets.ECR_REGISTRY }}/react-cd-test:latest
